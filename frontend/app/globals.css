@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDFCFB;
+  --foreground: #231F1C;
+  --accent: #E2231B;
+  --accent-complementary: #FDFCFB;
+  --muted: #71717A;
+  --border: #E4E4E7;
+}
+
+.dark {
+  --background: #3A3532;
+  --foreground: #F2ECE6;
+  --accent: #C4573E;
+  --accent-complementary: #F2ECE6;
+  --muted: #A1A1AA;
+  --border: #504A46;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-complementary: var(--accent-complementary);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-spectral);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold mb-6;
+    font-family: var(--font-spectral);
+  }
+  h2 {
+    @apply text-xl font-semibold mb-2;
+    font-family: var(--font-spectral);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .focus-ring-on-accent {
+    @apply focus-visible:outline-white;
+  }
+  .focus-ring-on-page {
+    @apply focus-visible:outline-foreground;
+  }
+  .toggle-button {
+    @apply text-lg px-6 py-3 min-w-32 rounded-lg font-medium transition-colors;
+  }
+  .breadcrumb-link {
+    @apply text-accent border border-border rounded-lg p-1;
+  }
+  .home-card {
+    @apply focus-visible:outline-foreground flex flex-col justify-center hover:opacity-90 hover:scale-[1.02] transition-transform min-h-40 border bg-accent rounded-lg p-4;
+  }
+}
