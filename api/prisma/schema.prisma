@@ -4,7 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
@@ -18,8 +18,8 @@ model Feed {
   title       String
   description String?
   url         String
+  status      String   @default("active")
   createdAt   DateTime @default(now())
-
 
   posts       Post[]
 }
@@ -46,4 +46,14 @@ model Post {
 
   authorId    Int
   author      Author   @relation(fields: [authorId], references: [id])
+}
+
+model RequestLog {
+  id        Int      @id @default(autoincrement())
+  endpoint  String
+  method    String
+  clientId  String
+  feedId    Int?
+  status    Int
+  timestamp DateTime @default(now())
 }
