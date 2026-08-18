@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "@/context/SiteContext";
+import { getClientId } from "@/lib/clientId";
 
 interface ApiPost {
     id: number;
@@ -76,9 +77,9 @@ export default function Feeds() {
     async function loadAll() {
         try {
             const [postsRes, feedsRes, authorsRes] = await Promise.all([
-                fetch(`${apiUrl}/api/posts`),
-                fetch(`${apiUrl}/api/feeds`),
-                fetch(`${apiUrl}/api/authors`),
+                fetch(`${apiUrl}/api/posts`, { headers: { "X-Client-Id": getClientId() } }),
+                fetch(`${apiUrl}/api/feeds`, { headers: { "X-Client-Id": getClientId() } }),
+                fetch(`${apiUrl}/api/authors`, { headers: { "X-Client-Id": getClientId() } }),
             ]);
             if (!postsRes.ok) throw new Error(`Posts API responded with ${postsRes.status}`);
             setPosts(await postsRes.json());
@@ -103,7 +104,10 @@ export default function Feeds() {
         }
         const res = await fetch(`${apiUrl}/api/posts`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "X-Client-Id": getClientId(),
+            },
             body: JSON.stringify({
                 title: newPost.title,
                 content: newPost.content,
@@ -128,7 +132,10 @@ export default function Feeds() {
     async function handleDelete(id: number) {
         const confirmed = window.confirm("Delete this post? This can't be undone.");
         if (!confirmed) return;
-        await fetch(`${apiUrl}/api/posts/${id}`, { method: "DELETE" });
+        await fetch(`${apiUrl}/api/posts/${id}`, { 
+            method: "DELETE",
+            headers: { "X-Client-Id": getClientId() },
+            });
         loadAll();
     }
 
@@ -148,7 +155,10 @@ export default function Feeds() {
         e.preventDefault();
         const res = await fetch(`${apiUrl}/api/posts/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "X-Client-Id": getClientId(),
+            },
             body: JSON.stringify({
                 title: editForm.title,
                 content: editForm.content,
