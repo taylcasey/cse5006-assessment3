@@ -23,6 +23,7 @@ export default function NavBar() {
                 <li><Link href="/" className="focus-ring-on-accent" onClick={() => setNavOpen(false)}>Home</Link></li>
                 <li><Link href="/about" className="focus-ring-on-accent" onClick={() => setNavOpen(false)}>About</Link></li>
                 <li><Link href="/feeds" className="focus-ring-on-accent" onClick={() => setNavOpen(false)}>Feeds</Link></li>
+                <li><Link href="/dashboard" className="focus-ring-on-accent" onClick={() => setNavOpen(false)}>Dashboard</Link></li>
                 <li><Link href="/settings" className="focus-ring-on-accent" onClick={() => setNavOpen(false)}>Settings</Link></li>
             </ul>
         </nav>
