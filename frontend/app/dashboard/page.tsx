@@ -66,6 +66,7 @@ export default async function Dashboard() {
 
     const noFeeds = data.totalFeeds === 0;
     const feedsWithNoPosts = data.totalFeeds > 0 && data.totalPosts === 0;
+    const hasErrorFeeds = data.feedStatusSummary.some((s) => s.status === "error" && s.count > 0);
 
     return (
         <main className="max-w-350 mx-auto space-y-12 p-4">
@@ -73,12 +74,17 @@ export default async function Dashboard() {
 
             {noFeeds && (
                 <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
-                    <p className="text-red-500 font-medium">⚠ No feeds exist yet — the server has nothing to report on.</p>
+                    <p className="text-red-500 font-medium text-center">⚠ No feeds exist yet — the server has nothing to report on.</p>
                 </div>
             )}
             {feedsWithNoPosts && (
                 <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
-                    <p className="text-red-500 font-medium">⚠ Feeds exist but no posts have been created yet.</p>
+                    <p className="text-red-500 font-medium text-center">⚠ Feeds exist but no posts have been created yet.</p>
+                </div>
+            )}
+            {hasErrorFeeds && (
+                <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
+                    <p className="text-red-500 font-medium text-center">⚠ One or more feeds are reporting an error status and may not be fetching correctly.</p>
                 </div>
             )}
 
