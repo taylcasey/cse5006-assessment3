@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const ENDPOINTS = ["/api/health", "/api/count", "/api/feeds", "/api/posts", "/api/authors"];
+const ENDPOINTS = ["/api/health", "/api/feeds", "/api/posts", "/api/authors"];
 
 function randomPastDate(daysBack: number): Date {
     const now = Date.now();
