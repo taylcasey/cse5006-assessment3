@@ -73,18 +73,18 @@ export default async function Dashboard() {
             <h1 className="text-center text-5xl">Dashboard</h1>
 
             {noFeeds && (
-                <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
-                    <p className="text-red-500 font-medium text-center">⚠ No feeds exist yet — the server has nothing to report on.</p>
+                <div className="max-w-3xl mx-auto border-2 border-danger rounded-lg p-4 bg-background">
+                    <p className="text-danger font-medium text-center">⚠ No feeds exist yet — the server has nothing to report on.</p>
                 </div>
             )}
             {feedsWithNoPosts && (
-                <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
-                    <p className="text-red-500 font-medium text-center">⚠ Feeds exist but no posts have been created yet.</p>
+                <div className="max-w-3xl mx-auto border-2 border-danger rounded-lg p-4 bg-background">
+                    <p className="text-danger font-medium text-center">⚠ Feeds exist but no posts have been created yet.</p>
                 </div>
             )}
             {hasErrorFeeds && (
-                <div className="max-w-3xl mx-auto border-2 border-red-500 rounded-lg p-4 bg-background">
-                    <p className="text-red-500 font-medium text-center">⚠ One or more feeds are reporting an error status and may not be fetching correctly.</p>
+                <div className="max-w-3xl mx-auto border-2 border-danger rounded-lg p-4 bg-background">
+                    <p className="text-danger font-medium text-center">⚠ One or more feeds are reporting an error status and may not be fetching correctly.</p>
                 </div>
             )}
 
@@ -150,7 +150,7 @@ export default async function Dashboard() {
                                     s.status === "active"
                                         ? "border-accent text-accent"
                                         : s.status === "error"
-                                        ? "border-red-500 text-red-500"
+                                        ? "border-danger text-danger"
                                         : "border-border text-muted"
                                 }`}
                             >

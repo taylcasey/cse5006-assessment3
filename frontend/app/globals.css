@@ -7,6 +7,7 @@
   --accent-complementary: #FDFCFB;
   --muted: #71717A;
   --border: #E4E4E7;
+  --danger: #B91C1C;
 }
 
 .dark {
@@ -16,6 +17,7 @@
   --accent-complementary: #F2ECE6;
   --muted: #A1A1AA;
   --border: #504A46;
+  --danger: #F87171;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -27,6 +29,7 @@
   --color-accent-complementary: var(--accent-complementary);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-danger: var(--danger);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-spectral);
 }

@@ -226,7 +226,7 @@ export default function Feeds() {
             </div>
 
             {loading && <p className="text-center text-muted">Loading feeds...</p>}
-            {error && <p className="text-center text-red-500">Couldn&apos;t load feeds: {error}</p>}
+            {error && <p className="text-center text-danger">Couldn&apos;t load feeds: {error}</p>}
             {!loading && !error && posts.length === 0 && (
                 <p className="text-center text-muted">No posts yet.</p>
             )}
@@ -284,7 +284,7 @@ export default function Feeds() {
                                     <span className="sr-only">about {post.title}</span>
                                 </Link>
                                 <button onClick={() => startEdit(post)} className="cursor-pointer text-sm underline text-accent hover:text-foreground transition-colors">Edit</button>
-                                <button onClick={() => handleDelete(post.id)} className="cursor-pointer text-sm underline text-red-500">Delete</button>
+                                <button onClick={() => handleDelete(post.id)} className="cursor-pointer text-sm underline text-danger">Delete</button>
                             </div>
                         </article>
                     );
