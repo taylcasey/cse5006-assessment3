@@ -3,7 +3,6 @@ services:
     build: ./api
     ports:
       - "4000:4000"
-      - "5555:5555"
     environment:
       - DATABASE_URL=file:/data/dev.db
     volumes:

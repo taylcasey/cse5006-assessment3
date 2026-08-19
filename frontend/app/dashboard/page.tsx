@@ -11,7 +11,7 @@ interface DashboardData {
 }
 
 async function getDashboardData(): Promise<DashboardData | null> {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+    const apiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
     try {
         const res = await fetch(`${apiUrl}/api/dashboard`, { cache: "no-store" });
         if (!res.ok) return null;
